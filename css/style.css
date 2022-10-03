@@ -1,0 +1,92 @@
+p, label, div{
+    text-align: center;
+}
+
+body{
+    background-color: rgb(180, 234, 177);
+}
+
+.headerSection {
+    grid-area: header;
+}
+.meterSection {
+    grid-area: meter;
+}
+.setterSection {
+    grid-area: setter;
+}
+.goalSection {
+    grid-area: goal;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-areas:
+    'meter header header header header header'
+    'meter setter setter setter setter setter'
+    'meter goal goal goal goal goal';
+    grid-template-rows: 1fr 4fr 4fr;
+    grid-template-columns: 1fr 4fr 4fr;
+    gap: 10px;
+    width: 500px;
+    height: 500px;
+    padding: 10px;
+    border-radius: 25px;
+    background: rgb(31,91,204);
+    background: linear-gradient(90deg, rgba(31,91,204,1) 0%, rgba(0,212,255,1) 72%);
+}
+
+.section {
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.8);
+    text-align: center;
+}
+
+
+::selection {
+  background: transparent;
+}
+
+input {
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    font-size: 3em;
+    color: #444;
+    text-align: center;
+}
+
+.input-container {
+    position: relative;
+    width: 350px;
+    margin: auto;
+}
+
+#minus,
+#plus {
+    font-family: 'Major Mono Display', monospace;
+    background: #0646cf;
+    color: #fff;
+    font-weight: 900;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    font-size: 60px;
+    height: 100%;
+    cursor: pointer;
+}
+
+#minus {
+    content: "-";
+    top: 0;
+    left: 0;
+    border-color: aqua;
+}
+
+#plus {
+    content: "+";
+    right: 0;
+    top: 0;
+    border-color: rgb(255, 0, 0);
+}

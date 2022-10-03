@@ -1,0 +1,48 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart Water Bottle</title>
+    <link href="css/style.css" rel="stylesheet">
+</head>
+<body>
+    <div class="headerInfo">
+        <h1>Smart Water Bottle</h1>
+        <h2>By: Daniel Hackney</h2>
+        <a href="https://danielnhackney.weebly.com/cs-6067---ui.html">Project Documentation</a>
+    </div>
+    <div style="display:flex; justify-content: center; align-items: center;">
+        <button id="simStart" onclick="startSimulation()">Start Simulation</button>
+    </div>
+    <div class="screenBoundingBox">
+        <div>
+            <p style="margin: 0px; font-size: 20px;">Water Dispensed Today: 500ml</p>
+            <p style="margin: 0px; font-size: 20px;">Average Water Dispensed: 900ml</p>
+        </div>
+        <br/>
+    </div>
+
+    <div class="screenBoundingBox grid-container">
+        <div class="section headerSection">
+            <p>Monday September 12, 2022</p>
+            <p id="clock">1:54pm</p>
+        </div>
+        <div class="section meterSection">
+            Meter
+        </div>
+        <div class="section setterSection">
+            <label style="font-size: 20px;">Set Temperature</label>
+            <div class="input-container">
+                <button id="minus">-</button>
+                <input disabled id="fridgeTemp1" value="45" type="number" min="40" max="100">
+                <button id="plus">+</button>
+            </div>
+        </div>
+        <div class="section goalSection">
+            Goal
+        </div>  
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
