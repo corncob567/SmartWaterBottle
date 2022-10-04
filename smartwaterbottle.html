@@ -10,28 +10,28 @@
         <h1>Smart Water Bottle</h1>
         <h2>By: Daniel Hackney</h2>
         <a href="https://danielnhackney.weebly.com/cs-6067---ui.html">Project Documentation</a>
+        <div>
+            <img src=".\img\waterbottlestock.jfif" alt="Water Bottle Stock Image" width="150px" height="250px">
+            <p>The interface will be a square, slightly bigger, version of the UI/screen you see on the water bottle in the image above.</p>
+            <p>For scale, I would expect the screen to be at least as big as a standard Apple watch, but not too much larger.</p>
+        </div>
     </div>
     <div style="display:flex; justify-content: center; align-items: center;">
-        <button id="simStart" onclick="startSimulation()">Start Simulation</button>
-    </div>
-    <div class="screenBoundingBox">
-        <div>
-            <p style="margin: 0px; font-size: 20px;">Water Dispensed Today: 500ml</p>
-            <p style="margin: 0px; font-size: 20px;">Average Water Dispensed: 900ml</p>
-        </div>
-        <br/>
+        <button id="simStart" onclick="startSimulation()">Start 24hr Simulation</button>
     </div>
 
-    <div class="screenBoundingBox grid-container">
+    <div class="grid-container">
         <div class="section headerSection">
-            <p>Monday September 12, 2022</p>
-            <p id="clock">1:54pm</p>
+            <div class="datetimeDisplay"><span id="clock">TIME</span> - <span id="calendar">DATE</span></div>
+            <div class="battery">
+                <div class="battery-level" style="height:80%;"></div>
+            </div>
         </div>
         <div class="section meterSection">
             Meter
         </div>
         <div class="section setterSection">
-            <label style="font-size: 20px;">Set Temperature</label>
+            <label style="font-size: 40px;">Set Temperature</label>
             <div class="input-container">
                 <button id="minus">-</button>
                 <input disabled id="fridgeTemp1" value="45" type="number" min="40" max="100">
@@ -39,7 +39,10 @@
             </div>
         </div>
         <div class="section goalSection">
-            Goal
+            <div>
+                <p>Water Dispensed Today: 500ml</p>
+                <p>Average Water Dispensed: 900ml</p>
+            </div>
         </div>  
     </div>
 

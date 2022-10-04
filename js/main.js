@@ -39,21 +39,15 @@ function changeTemp(boxId, newTemp){
   document.getElementById("box" + boxId).innerHTML = "Box " + boxId + ": " + newTemp + "F";
 }
 
-// document.getElementById("addImageButton").addEventListener("click", addImage);
-// function addImage(){
-//     console.log("Henlo");
-//     const img = document.createElement("img");
-//     img.src = "https://picsum.photos/200/301";
-//     img.height = 100;
-//     img.width = 100;
-//     document.body.appendChild(img);
-// }
-
+updateClock() // Run this on load so the user sees the date/time immediately without having to wait the first second for it to update.
 setInterval(updateClock, 1000);
 function updateClock() {
-  let d = new Date();
-  document.getElementById("clock").innerHTML=
-  d.toLocaleTimeString();
+  let time = new Date();
+  let date = new Date();
+  document.getElementById("clock").innerHTML =
+  time.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
+  document.getElementById("calendar").innerHTML =
+  date.toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' });
 }
 
 let isSimulationRunning = false
