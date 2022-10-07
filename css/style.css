@@ -17,6 +17,10 @@ body{
 }
 .setterSection {
     grid-area: setter;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 }
 .goalSection {
     grid-area: goal;
@@ -24,6 +28,9 @@ body{
 
 .datetimeDisplay{
     margin: auto;
+    margin-left: 71.375px;
+    font-size: 30px;
+    font-weight: 800;
 }
 
 .grid-container {
@@ -34,14 +41,13 @@ body{
     'meter header header header header header'
     'meter setter setter setter setter setter'
     'meter goal goal goal goal goal';
-    grid-template-rows: 1fr 4fr 4fr;
-    grid-template-columns: 1fr 4fr 4fr;
+    grid-template-rows: 1fr 4fr 2fr;
+    grid-template-columns: 1.2fr 4fr 4fr;
     gap: 10px;
     width: 500px;
     height: 500px;
     padding: 10px;
     border-radius: 25px;
-    background: rgb(31,91,204);
     background: linear-gradient(90deg, rgba(31,91,204,1) 0%, rgba(0,212,255,1) 72%);
 }
 
@@ -54,16 +60,23 @@ body{
 input {
     width: 100%;
     padding: 0;
-    margin: 0;
+    margin-top: 50px;
     border: 0;
-    font-size: 3em;
-    color: #444;
+    font-size: 6em;
+    color: rgb(0, 0, 0);
     text-align: center;
+}
+
+.currentTempContainer{
+    font-size: 24px;
+    padding-bottom: 20px;
+    font-weight: 800;
 }
 
 .input-container {
     position: relative;
-    width: 350px;
+    width: 400px;
+    height: 200px;
     margin: auto;
 }
 
@@ -79,20 +92,23 @@ input {
     font-size: 60px;
     height: 100%;
     cursor: pointer;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 25px;
 }
 
 #minus {
     content: "-";
     top: 0;
     left: 0;
-    border-color: aqua;
+    border-color: rgb(0, 132, 255);
 }
 
 #plus {
     content: "+";
     right: 0;
     top: 0;
-    border-color: rgb(255, 0, 0);
+    border-color: rgb(207, 54, 54);
 }
 
 /* Basic battery icon styles adopted from: https://codepen.io/manovotny/pen/poLKJg */

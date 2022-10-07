@@ -1,5 +1,5 @@
 const MINTEMP = 35;
-const MAXTEMP = 100;
+const MAXTEMP = 99;
 
 (function(){
   let inputContainer = document.querySelector(".input-container");
@@ -8,21 +8,25 @@ const MAXTEMP = 100;
   let plus = inputContainer.lastElementChild;
 
   function changeTemp(e) {
-      if(e.target == minus && input.value > MINTEMP) {
-          input.value--;
-      } else if(e.target == plus && input.value < MAXTEMP) {
-          input.value++;
-      }
-      if(input.value == MINTEMP){
-        minus.disabled = true;
-      }
-      else if(input.value == MAXTEMP){
-        plus.disabled = true;
-      }
-      else{
-        plus.disabled = false;
-        minus.disabled = false;
-      }
+    let temp = +input.value.substring(0, input.value.indexOf(' '));
+    let unit = ' ' + input.value.substring(input.value.indexOf(' ') + 1); // The unit for the temperature
+    if(e.target == minus && temp > MINTEMP) {
+      temp--;
+      input.value = temp + unit;
+    } else if(e.target == plus && temp < MAXTEMP) {
+      temp++;
+      input.value = temp + unit;
+    }
+    if(temp == MINTEMP){
+      minus.disabled = true;
+    }
+    else if(temp == MAXTEMP){
+      plus.disabled = true;
+    }
+    else{
+      plus.disabled = false;
+      minus.disabled = false;
+    }
   }
 
   inputContainer.addEventListener("click", changeTemp);
@@ -42,12 +46,9 @@ function changeTemp(boxId, newTemp){
 updateClock() // Run this on load so the user sees the date/time immediately without having to wait the first second for it to update.
 setInterval(updateClock, 1000);
 function updateClock() {
-  let time = new Date();
   let date = new Date();
-  document.getElementById("clock").innerHTML =
-  time.toLocaleTimeString([], {hour: '2-digit', minute: '2-digit'});
-  document.getElementById("calendar").innerHTML =
-  date.toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric' });
+  document.getElementsByClassName("datetimeDisplay")[0].innerHTML =
+  date.toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric', hour: "numeric", minute: "2-digit" });
 }
 
 let isSimulationRunning = false
