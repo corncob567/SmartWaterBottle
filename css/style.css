@@ -24,12 +24,17 @@ body{
 }
 .goalSection {
     grid-area: goal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 30px;
 }
 
 .datetimeDisplay{
     margin: auto;
     margin-left: 71.375px;
-    font-size: 30px;
+    font-size: 28px;
     font-weight: 800;
 }
 
@@ -73,6 +78,14 @@ input {
     font-weight: 800;
 }
 
+.waterQuantity{
+    transform: rotate(-90deg);
+}
+
+meter::-webkit-meter-optimum-value {
+    background: rgb(0, 132, 255);
+}
+
 .input-container {
     position: relative;
     width: 400px;
@@ -83,7 +96,7 @@ input {
 #minus,
 #plus {
     font-family: 'Major Mono Display', monospace;
-    background: #0646cf;
+    background: #6797ff;
     color: #fff;
     font-weight: 900;
     position: absolute;

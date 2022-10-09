@@ -48,7 +48,7 @@ setInterval(updateClock, 1000);
 function updateClock() {
   let date = new Date();
   document.getElementsByClassName("datetimeDisplay")[0].innerHTML =
-  date.toLocaleDateString([], { month: 'short', day: 'numeric', year: 'numeric', hour: "numeric", minute: "2-digit" });
+  date.toLocaleDateString([], { month: '2-digit', day: 'numeric', year: 'numeric', hour: "numeric", minute: "2-digit" });
 }
 
 let isSimulationRunning = false
