@@ -6,6 +6,10 @@ body{
     background-color: rgb(180, 234, 177);
 }
 
+h1, h3{
+    margin: 0;
+}
+
 .headerSection {
     grid-area: header;
     display: flex;
