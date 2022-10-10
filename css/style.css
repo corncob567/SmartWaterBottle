@@ -13,7 +13,10 @@ body{
     justify-content: space-between;
 }
 .meterSection {
-    grid-area: meter;
+    grid-area: meterSec;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .setterSection {
     grid-area: setter;
@@ -43,9 +46,9 @@ body{
     margin-top: 20px;
     display: grid;
     grid-template-areas:
-    'meter header header header header header'
-    'meter setter setter setter setter setter'
-    'meter goal goal goal goal goal';
+    'meterSec header header header header header'
+    'meterSec setter setter setter setter setter'
+    'meterSec goal goal goal goal goal';
     grid-template-rows: 1fr 4fr 2fr;
     grid-template-columns: 1.2fr 4fr 4fr;
     gap: 10px;
@@ -72,18 +75,32 @@ input {
     text-align: center;
 }
 
+input:focus {
+    outline: none;
+}
+
 .currentTempContainer{
-    font-size: 24px;
+    font-size: 28px;
     padding-bottom: 20px;
     font-weight: 800;
 }
 
 .waterQuantity{
-    transform: rotate(-90deg);
+    transform: rotate(-90deg) scale(6, 8);
 }
+
+meter::-moz-meter-bar {
+    background: #f00;
+    border-radius:20rem;
+  }
 
 meter::-webkit-meter-optimum-value {
     background: rgb(0, 132, 255);
+}
+
+meter::-webkit-meter-bar{
+    box-shadow: 0 5px 5px -5px #333 inset;
+    border-color: #333;
 }
 
 .input-container {
@@ -93,8 +110,8 @@ meter::-webkit-meter-optimum-value {
     margin: auto;
 }
 
-#minus,
-#plus {
+.minus,
+.plus {
     font-family: 'Major Mono Display', monospace;
     background: #6797ff;
     color: #fff;
@@ -110,18 +127,26 @@ meter::-webkit-meter-optimum-value {
     border-radius: 25px;
 }
 
-#minus {
+.minus {
     content: "-";
     top: 0;
     left: 0;
     border-color: rgb(0, 132, 255);
 }
 
-#plus {
+.plus {
     content: "+";
     right: 0;
     top: 0;
     border-color: rgb(207, 54, 54);
+}
+
+button.plus:disabled, button.minus:disabled{
+    background: #6077aa;
+}
+
+.bluetoothIcon{
+    margin-right: 5px;
 }
 
 /* Basic battery icon styles adopted from: https://codepen.io/manovotny/pen/poLKJg */
@@ -132,8 +157,9 @@ meter::-webkit-meter-optimum-value {
   padding: 2px;
   border-radius: 4px;
   position: relative;
-  margin: 15px 15px;
+  margin: 0 15px 0 0;
   justify-self: flex-end;
+  transform: rotate(90deg);
 }
 
 .battery::before{

@@ -32,8 +32,8 @@ const MAXTEMP = 99;
   inputContainer.addEventListener("click", changeTemp);
 })();
 
-document.getElementById("fridgeTemp1").addEventListener("input", registerChangeTemp);
-document.getElementById("fridgeTemp1").boxId = 1
+document.getElementById("waterTemp").addEventListener("input", registerChangeTemp);
+document.getElementById("waterTemp").boxId = 1
 function registerChangeTemp(evt) {
   let boxId = evt.currentTarget.boxId
   changeTemp(boxId, this.value);
@@ -63,7 +63,7 @@ function startSimulation(){
 
 function simulationStep(){
   console.log("Simulation Step");
-  let drawer = document.getElementById("fridgeTemp1");
+  let drawer = document.getElementById("waterTemp");
   drawer.value = Number(drawer.value) + 1;
   changeTemp('1', drawer.value)
 }

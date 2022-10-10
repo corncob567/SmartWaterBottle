@@ -4,21 +4,22 @@
     <meta charset="UTF-8">
     <title>Smart Water Bottle</title>
     <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
     <div class="headerInfo">
         <h1>Smart Water Bottle</h1>
-        <h2>By: Daniel Hackney</h2>
-        <a href="https://danielnhackney.weebly.com/cs-6067---ui.html">Project Documentation</a>
+        <h3>By: Daniel Hackney</h3>
+        <h3><a href="https://danielnhackney.weebly.com/cs-6067---ui.html">Project Documentation</a> | <a href="https://github.com/corncob567/SmartWaterBottle">Project GitHub Repo</a></h3>
+        <img src=".\img\waterbottlestock.jfif" alt="Water Bottle Stock Image" width="150px" height="250px">
         <div>
-            <img src=".\img\waterbottlestock.jfif" alt="Water Bottle Stock Image" width="150px" height="250px">
-            <p>The interface will be a square, slightly bigger, version of the UI/screen you see on the water bottle in the image above. <br>
+            <span>The interface will be a square, slightly bigger, version of the UI/screen you see on the water bottle in the image above. <br>
             For scale, I would expect the screen to be at least as big as a standard Apple watch, but not too much larger.<br>
-            The UI below is scaled up for better visibility.</p>
+            The UI below is scaled up for better visibility.</span>
         </div>
     </div>
     <div style="display:flex; justify-content: center; align-items: center;">
-        <button id="simStart" onclick="startSimulation()">Start 24hr Simulation</button>
+        <button id="simStart" disabled onclick="startSimulation()">Start 24hr Simulation (disabled until B-Goal is complete)</button>
     </div>
 
     <div class="grid-container">
@@ -27,6 +28,7 @@
             <div class="battery">
                 <div class="battery-level" style="height:60%;"></div>
             </div>
+            <i style="font-size:24px" class="fa bluetoothIcon">&#xf293;</i>
         </div>
         <div class="section meterSection">
             <meter class="waterQuantity" value="70" min="1" max="100"></meter>
@@ -34,9 +36,9 @@
         <div class="section setterSection">
             <label style="font-size: 40px;">Set Temperature</label>
             <div class="input-container">
-                <button id="minus">-</button>
-                <input disabled id="fridgeTemp1" value="45 &#8457" type="string"></input>
-                <button id="plus">+</button>
+                <button class="minus">-</button>
+                <input disabled id="waterTemp" value="45 &#8457" type="string"></input>
+                <button class="plus">+</button>
             </div>
             <div class="currentTempContainer">
                 <span>Currently: </span>
