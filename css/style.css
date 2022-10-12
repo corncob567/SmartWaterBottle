@@ -49,9 +49,8 @@ h1, h3{
 }
 
 .datetimeDisplay{
-    margin: auto;
-    margin-left: 71.375px;
-    font-size: 28px;
+    margin-left: 30px;
+    font-size: 26px;
     font-weight: 800;
 }
 
@@ -160,7 +159,11 @@ button.plus:disabled, button.minus:disabled{
 }
 
 .bluetoothIcon{
-    margin-right: 5px;
+    margin-right: 12px;
+}
+
+.fa-gear{
+    margin-right: 20px;
 }
 
 /* Basic battery icon styles adopted from: https://codepen.io/manovotny/pen/poLKJg */
@@ -171,7 +174,7 @@ button.plus:disabled, button.minus:disabled{
   padding: 2px;
   border-radius: 4px;
   position: relative;
-  margin: 0 15px 0 0;
+  margin: 0 15px 0 25px;
   justify-self: flex-end;
   transform: rotate(90deg);
 }
