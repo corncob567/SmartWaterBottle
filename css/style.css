@@ -70,7 +70,7 @@ h1, h3{
     height: 500px;
     padding: 10px;
     border-radius: 25px;
-    background: linear-gradient(90deg, rgba(31,91,204,1) 0%, rgba(0,212,255,1) 72%);
+    background: linear-gradient(90deg, rgb(76, 105, 158) 0%, rgb(111, 172, 184) 72%);
 }
 
 .section {
@@ -103,18 +103,13 @@ input:focus {
     transform: rotate(-90deg) scale(6, 8);
 }
 
-meter::-moz-meter-bar {
-    background: #f00;
-    border-radius:20rem;
-  }
-
 meter::-webkit-meter-optimum-value {
     background: rgb(0, 132, 255);
 }
 
 meter::-webkit-meter-bar{
     box-shadow: 0 5px 5px -5px #333 inset;
-    border-color: #333;
+    border-color: rgb(0, 0, 0);
 }
 
 meter::-webkit-meter-optimum-value, meter::-webkit-meter-suboptimum-value, meter::-webkit-meter-even-less-good-value {
@@ -143,13 +138,14 @@ meter::-webkit-meter-optimum-value, meter::-webkit-meter-suboptimum-value, meter
     padding-left: 15px;
     padding-right: 15px;
     border-radius: 25px;
+    border-width: thick;
 }
 
 .minus {
     content: "-";
     top: 0;
     left: 0;
-    border-color: rgb(0, 132, 255);
+    border-color: rgb(0, 174, 255);
 }
 
 .plus {
