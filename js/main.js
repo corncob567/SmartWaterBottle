@@ -102,7 +102,7 @@ function updateTempChangeDirection(){
   }
   // always check for equality after the currentTemp changes for an immediate update in the UI
   if(+setTempInput.value.substring(0, setTempInput.value.indexOf(' ')) == +currentTemp.innerHTML){
-    tempChangeDirection.innerHTML = ""
+    tempChangeDirection.innerHTML = "";
   }
 }
 
@@ -179,7 +179,7 @@ function simulationStep(){
     heatAndCoolInterval = setInterval(heatAndCool, 4000);
     plus.style.pointerEvents = "auto";
     minus.style.pointerEvents = "auto";
-    bluetoothIcon.style.color = "black"
+    bluetoothIcon.style.color = "black";
     simStartButton.innerHTML = "Start 24hr Simulation";
     clearInterval(simulation);
   }else{
@@ -201,9 +201,9 @@ function simulationStep(){
         }
       }
       if (simDataAtStep[3] == true){
-        bluetoothIcon.style.color = "blue"
+        bluetoothIcon.style.color = "blue";
       }else{
-        bluetoothIcon.style.color = "black"
+        bluetoothIcon.style.color = "black";
       }
     }
     simStepCount++;
