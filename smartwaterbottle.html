@@ -31,7 +31,13 @@
             <i style="font-size:24px" class="fa bluetoothIcon">&#xf293;</i>
         </div>
         <div class="section meterSection">
-            <meter class="waterQuantity" value="1000" min="1" max="1000"></meter>
+            <meter class="waterQuantity" value="1000" min="1" max="1000">
+                <div pseudo="-webkit-meter-inner-element">
+                    <div pseudo="-webkit-meter-bar">
+                        <div pseudo="-webkit-meter-optimum-value" style="width: 46%;"></div>
+                    </div>
+                </div>
+            </meter>
         </div>
         <div class="section setterSection">
             <label style="font-size: 40px;">Set Temperature</label>

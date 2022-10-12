@@ -117,6 +117,10 @@ meter::-webkit-meter-bar{
     border-color: #333;
 }
 
+meter::-webkit-meter-optimum-value, meter::-webkit-meter-suboptimum-value, meter::-webkit-meter-even-less-good-value {
+    transition: 1s width;
+}
+
 .input-container {
     position: relative;
     width: 400px;
