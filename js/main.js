@@ -96,13 +96,15 @@ function updateTempChangeDirection(){
   if(setTemp < currTemp){
     tempChangeDirection.innerHTML = "&#8681;"; // down arrow
     tempChangeDirection.style.color = "blue";
+    tempChangeDirection.style.visibility = "visible";
   }else if(setTemp > currTemp){
     tempChangeDirection.innerHTML = "&#8679;"; // up arrow
     tempChangeDirection.style.color = "red";
+    tempChangeDirection.style.visibility = "visible";
   }
   // always check for equality after the currentTemp changes for an immediate update in the UI
   if(+setTempInput.value.substring(0, setTempInput.value.indexOf(' ')) == +currentTemp.innerHTML){
-    tempChangeDirection.innerHTML = "";
+    tempChangeDirection.style.visibility = "hidden";
   }
 }
 
