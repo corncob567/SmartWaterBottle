@@ -80,6 +80,7 @@ function startSimulation(){
     settingsIcon.style.visibility = "visible";
     homeIcon.style.visibility = "hidden";
     settingsButton.style.pointerEvents = "none";
+    updateTempUnit("\u2109");
     clearInterval(heatAndCoolInterval);
     heatAndCoolInterval = setInterval(heatAndCool, 80);
     document.getElementsByClassName("datetimeDisplay")[0].innerHTML = simStartDate.toLocaleDateString('en-US', simDateOptions);
@@ -277,27 +278,34 @@ function fToCelsius(fahrenheit)
   return Math.floor((fTemp - 32) * 5 / 9);
 } 
 
-tempUnitsInput.addEventListener('change', (event) => {
+function updateTempUnit(unitString){
   let tempUnitElements = document.getElementsByClassName("tempUnit");
+  tempUnitSet = unitString;
   for (let i = 0; i < tempUnitElements.length; i++) {
-    tempUnitElements[i].innerHTML = tempUnitsInput.value;
+    tempUnitElements[i].innerHTML = unitString;
   }
-  tempUnitSet = tempUnitsInput.value;
   let currTemp2 = +setTempInput.value.substring(0, setTempInput.value.indexOf(' ')); 
   let newTemp;
-  if(tempUnitsInput.options[tempUnitsInput.selectedIndex].text == "Fahrenheit"){ // temp is changing to fahrenheit
+  if(unitString == "\u2109"){ // temp is changing to fahrenheit
+    tempUnitsInput.value = "\u2109";
     newTemp = celsiusToF(currTemp2);
     minTemp = 35;
     maxTemp = 99;
     currentTemp.innerHTML = celsiusToF(+currentTemp.innerHTML)
   }else{ // temp is changing to celsius
+    tempUnitsInput.value = "\u2103";
     newTemp = fToCelsius(currTemp2);
     minTemp = 2;
     maxTemp = 37;
     currentTemp.innerHTML = fToCelsius(+currentTemp.innerHTML);
   }
-  setTempInput.value = newTemp + ' ' + tempUnitSet;
+  setTempInput.value = newTemp + ' ' + unitString;
+}
+
+tempUnitsInput.addEventListener('change', (event) => {
+  updateTempUnit(tempUnitsInput.value);
 });
+
 
 militaryTimeInput.addEventListener('change', (event) => {
   if(!militaryTimeInput.checked){ // turning military time on
