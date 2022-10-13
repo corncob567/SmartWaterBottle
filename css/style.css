@@ -109,6 +109,21 @@ h3{
     flex-direction: column;
 }
 
+
+.waterSection{
+    grid-area: waterSection;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.waterIcon {
+    width: 40px;
+    height: 40px;
+    --fa-primary-color: blue;
+}
+
 .settings-field{
     padding-top: 5px;
     padding-bottom: 5px;
@@ -131,10 +146,10 @@ h3{
     margin-top: 10px;
     display: grid;
     grid-template-areas:
-    'header header header header header header'
+    'waterSection header header header header header'
     'settings settings settings settings settings settings'
     'settings settings settings settings settings settings';
-    grid-template-rows: 1fr 4fr 2fr;
+    grid-template-rows: 1fr 7fr;
     grid-template-columns: 1.2fr 4fr 4fr;
     gap: 10px;
     width: 100%;
