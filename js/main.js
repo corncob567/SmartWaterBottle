@@ -1,45 +1,6 @@
-const MINTEMP = 35;
-const MAXTEMP = 99;
+let minTemp = 35;
+let maxTemp = 99;
 let isSimulationRunning = false;
-
-let inputContainer = document.querySelector(".input-container");
-inputContainer.addEventListener("click", changeTemp);
-let setTempInput = inputContainer.firstElementChild.nextElementSibling;
-let minus = inputContainer.firstElementChild;
-let plus = inputContainer.lastElementChild;
-
-function changeTemp(e) {
-  let temp = +setTempInput.value.substring(0, setTempInput.value.indexOf(' '));
-  let unit = ' ' + setTempInput.value.substring(setTempInput.value.indexOf(' ') + 1); // The unit for the temperature
-  if(e.target == minus && temp > MINTEMP) {
-    temp--;
-    setTempInput.value = temp + unit;
-  } else if(e.target == plus && temp < MAXTEMP) {
-    temp++;
-    setTempInput.value = temp + unit;
-  }
-  if(temp == MINTEMP){
-    minus.disabled = true;
-  }
-  else if(temp == MAXTEMP){
-    plus.disabled = true;
-  } 
-  else{
-    plus.disabled = false;
-    minus.disabled = false;
-  }
-  updateTempChangeDirection(); // Immediately update the current temperature UI
-}
-
-updateClock(); // Run this on load so the user sees the date/time immediately without having to wait the first second for it to update.
-setInterval(updateClock, 1000);
-function updateClock() {
-  if(isSimulationRunning == false){
-    let date = new Date();
-    document.getElementsByClassName("datetimeDisplay")[0].innerHTML =
-    date.toLocaleDateString([], { month: '2-digit', day: 'numeric', year: 'numeric', hour: "numeric", minute: "2-digit" });
-  }
-}
 
 let simStartDate = new Date(Date.UTC(2022, 11, 1, 5, 0, 0));
 let simStepCount = 0;
@@ -57,6 +18,49 @@ let bluetoothIcon = document.getElementsByClassName("bluetoothIcon")[0];
 let currentlyCharging = false;
 let simulation;
 let heatAndCoolInterval = setInterval(heatAndCool, 4000);
+let dailyGoalInput = document.getElementsByName("dailyGoalInput")[0];
+let volUnitsInput = document.getElementsByName("volUnitsInput")[0];
+let tempUnitsInput = document.getElementsByName("tempUnitsInput")[0];
+let militaryTimeInput = document.getElementsByName("militaryTimeInput")[0];
+let themeColorInput = document.getElementsByName("themeColorInput")[0];
+let tempUnitSet = tempUnitsInput.value;
+let inputContainer = document.querySelector(".input-container");
+let setTempInput = inputContainer.firstElementChild.nextElementSibling;
+let minus = inputContainer.firstElementChild;
+let plus = inputContainer.lastElementChild;
+
+inputContainer.addEventListener("click", changeTemp);
+function changeTemp(e) {
+  let temp = +setTempInput.value.substring(0, setTempInput.value.indexOf(' '));
+  let unit = ' ' + tempUnitSet; // The unit for the temperature
+  if(e.target == minus && temp > minTemp) {
+    temp--;
+    setTempInput.value = temp + unit;
+  } else if(e.target == plus && temp < maxTemp) {
+    temp++;
+    setTempInput.value = temp + unit;
+  }
+  if(temp == minTemp){
+    minus.disabled = true;
+  }
+  else if(temp == maxTemp){
+    plus.disabled = true;
+  } 
+  else{
+    plus.disabled = false;
+    minus.disabled = false;
+  }
+  updateTempChangeDirection(); // Immediately update the current temperature UI
+}
+
+updateClock(); // Run this on load so the user sees the date/time immediately without having to wait the first second for it to update.
+setInterval(updateClock, 1000);
+function updateClock() {
+  if(isSimulationRunning == false){
+    let date = new Date();
+    document.getElementsByClassName("datetimeDisplay")[0].innerHTML = date.toLocaleDateString([], simDateOptions);
+  }
+}
 
 function startSimulation(){
   if (isSimulationRunning == false){
@@ -120,13 +124,13 @@ function addMinutes(date, minutes) {
 
 function setTemp(temp) {
   let unit = ' ' + setTempInput.value.substring(setTempInput.value.indexOf(' ') + 1); // The unit for the temperature
-  if(temp >= MINTEMP && temp <= MAXTEMP) {
+  if(temp >= minTemp && temp <= maxTemp) {
     setTempInput.value = temp + unit;
   }
-  if(temp == MINTEMP){
+  if(temp == minTemp){
     minus.disabled = true;
   }
-  else if(temp == MAXTEMP){
+  else if(temp == maxTemp){
     plus.disabled = true;
   } 
   else{
@@ -232,6 +236,8 @@ let settingsButton = document.querySelector(".settingsButton");
 let settingsIcon = document.querySelector(".fa-gear");
 let homeIcon = document.querySelector(".fa-home");
 let settingsGrid = document.querySelector(".settings-grid-container");
+let mainGrid = document.querySelector(".grid-container");
+
 settingsButton.addEventListener("click", toggleSettingsPage);
 
 function toggleSettingsPage(){
@@ -247,13 +253,62 @@ function toggleSettingsPage(){
   }
 }
 
-let dailyGoalInput = document.getElementsByName("dailyGoalInput")[0];
-let volUnitsInput = document.getElementsByName("volUnitsInput")[0];
-let tempUnitsInput = document.getElementsByName("tempUnitsInput")[0];
-let militaryTimeInput = document.getElementsByName("militaryTimeInput")[0];
-let themeColorInput = document.getElementsByName("themeColorInput")[0];
-
 dailyGoalInput.addEventListener('change', (event) => {
   dailyGoal.innerHTML = dailyGoalInput.value;
   checkGoalStatus();
+});
+
+volUnitsInput.addEventListener('change', (event) => {
+  let volUnitElements = document.getElementsByClassName("volUnit");
+  for (let i = 0; i < volUnitElements.length; i++) {
+    volUnitElements[i].innerHTML = volUnitsInput.value;
+  }
+});
+
+function celsiusToF(celsius) 
+{
+  let cTemp = celsius;
+  return Math.floor(cTemp * 9 / 5 + 32);
+}
+
+function fToCelsius(fahrenheit) 
+{
+  let fTemp = fahrenheit;
+  return Math.floor((fTemp - 32) * 5 / 9);
+} 
+
+tempUnitsInput.addEventListener('change', (event) => {
+  let tempUnitElements = document.getElementsByClassName("tempUnit");
+  for (let i = 0; i < tempUnitElements.length; i++) {
+    tempUnitElements[i].innerHTML = tempUnitsInput.value;
+  }
+  tempUnitSet = tempUnitsInput.value;
+  let currTemp2 = +setTempInput.value.substring(0, setTempInput.value.indexOf(' ')); 
+  let newTemp;
+  if(tempUnitsInput.options[tempUnitsInput.selectedIndex].text == "Fahrenheit"){ // temp is changing to fahrenheit
+    newTemp = celsiusToF(currTemp2);
+    minTemp = 35;
+    maxTemp = 99;
+    currentTemp.innerHTML = celsiusToF(+currentTemp.innerHTML)
+  }else{ // temp is changing to celsius
+    newTemp = fToCelsius(currTemp2);
+    minTemp = 2;
+    maxTemp = 37;
+    currentTemp.innerHTML = fToCelsius(+currentTemp.innerHTML);
+  }
+  setTempInput.value = newTemp + ' ' + tempUnitSet;
+});
+
+militaryTimeInput.addEventListener('change', (event) => {
+  if(!militaryTimeInput.checked){ // turning military time on
+    simDateOptions = { month: '2-digit', day: 'numeric', year: 'numeric', hour: "numeric", minute: "2-digit" };
+  }else{ // turning military time off
+    simDateOptions = { month: '2-digit', day: 'numeric', year: 'numeric', hour: "numeric", minute: "2-digit", hour12: false };
+  }
+  updateClock();
+});
+
+themeColorInput.addEventListener('change', (event) => {
+  settingsGrid.style.backgroundColor = themeColorInput.value;
+  mainGrid.style.backgroundColor = themeColorInput.value;
 });

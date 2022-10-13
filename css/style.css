@@ -63,8 +63,9 @@ h3{
     color: green;
 }
 
-#military-time{
-    transform: translate(-76px);
+#militaryTimeInput{
+    width: 50px;
+    margin-right: 153px;
 }
 
 .datetimeDisplay{
@@ -91,7 +92,6 @@ h3{
     opacity: 1;
     padding: 10px;
     border-radius: 25px;
-    background: linear-gradient(90deg, rgb(76, 105, 158) 0%, rgb(111, 172, 184) 72%);
 }
 
 .main-container {
@@ -99,6 +99,7 @@ h3{
     height: 500px;
     position: relative;
     margin: auto;
+    margin-bottom: 100px;
   }
 
 .settingsSection {
@@ -144,7 +145,10 @@ h3{
     z-index: -1;
     padding: 10px;
     border-radius: 25px;
-    background: linear-gradient(90deg, rgb(76, 105, 158) 0%, rgb(111, 172, 184) 72%);
+}
+
+.mainView, .settingsView{
+    background-color: rgb(76, 105, 158);
 }
 
 .section {
