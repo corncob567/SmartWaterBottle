@@ -2,11 +2,24 @@ p, label, div{
     text-align: center;
 }
 
-body{
-    background-color: rgb(180, 234, 177);
+label{
+    margin-right: 5px;
 }
 
-h1, h3{
+body{
+    background-image: url('/img/outside.jpg');
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+h1{
+    -webkit-text-stroke: 1px rgb(16, 142, 173);
+    color: rgb(62, 80, 241);
+    margin: 0;
+}
+
+h3{
     margin: 0;
 }
 
@@ -15,6 +28,7 @@ h1, h3{
     display: flex;
     align-items: center;
     justify-content: space-between;
+    z-index: 2;
 }
 .meterSection {
     grid-area: meterSec;
@@ -40,6 +54,7 @@ h1, h3{
 
 .dailyGoalContainer, .dailyAvgContainer{
     padding-left: 10px;
+    font-size: 28px;
 }
 
 .checkmark{
@@ -48,16 +63,18 @@ h1, h3{
     color: green;
 }
 
+#military-time{
+    transform: translate(-76px);
+}
+
 .datetimeDisplay{
-    margin: auto;
-    margin-left: 71.375px;
-    font-size: 28px;
-    font-weight: 800;
+    margin-left: 20px;
+    font-size: 22px;
+    width: 235px;
 }
 
 .grid-container {
-    margin: auto;
-    margin-top: 20px;
+    margin-top: 10px;
     display: grid;
     grid-template-areas:
     'meterSec header header header header header'
@@ -66,8 +83,65 @@ h1, h3{
     grid-template-rows: 1fr 4fr 2fr;
     grid-template-columns: 1.2fr 4fr 4fr;
     gap: 10px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 1;
+    padding: 10px;
+    border-radius: 25px;
+    background: linear-gradient(90deg, rgb(76, 105, 158) 0%, rgb(111, 172, 184) 72%);
+}
+
+.main-container {
     width: 500px;
     height: 500px;
+    position: relative;
+    margin: auto;
+  }
+
+.settingsSection {
+    grid-area: settings;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+.settings-field{
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex;
+    align-items: center;
+}
+
+.settings-field > label{
+    font-size: 26px;
+}
+
+.settings-field > input, .settings-field > select{
+    width: 250px;
+    height: 50px;
+    font-size: 30px;
+}
+
+.settings-grid-container {
+    margin: auto;
+    margin-top: 10px;
+    display: grid;
+    grid-template-areas:
+    'header header header header header header'
+    'settings settings settings settings settings settings'
+    'settings settings settings settings settings settings';
+    grid-template-rows: 1fr 4fr 2fr;
+    grid-template-columns: 1.2fr 4fr 4fr;
+    gap: 10px;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: -1;
     padding: 10px;
     border-radius: 25px;
     background: linear-gradient(90deg, rgb(76, 105, 158) 0%, rgb(111, 172, 184) 72%);
@@ -79,7 +153,7 @@ h1, h3{
     text-align: center;
 }
 
-input {
+#waterTemp {
     width: 100%;
     padding: 0;
     margin-top: 50px;
@@ -89,14 +163,13 @@ input {
     text-align: center;
 }
 
-input:focus {
+#waterTemp:focus {
     outline: none;
 }
 
 .currentTempContainer{
     font-size: 28px;
     padding-bottom: 20px;
-    font-weight: 800;
 }
 
 .waterQuantity{
@@ -160,7 +233,18 @@ button.plus:disabled, button.minus:disabled{
 }
 
 .bluetoothIcon{
-    margin-right: 5px;
+    margin-right: 12px;
+}
+
+.settingsButton{
+    margin-right: 10px;
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+.settingsButton:hover {
+    outline-color: rgba(255, 255, 255, 0);
+    text-shadow: 1px 1px 2px #4e565a; 
 }
 
 /* Basic battery icon styles adopted from: https://codepen.io/manovotny/pen/poLKJg */
@@ -171,7 +255,7 @@ button.plus:disabled, button.minus:disabled{
   padding: 2px;
   border-radius: 4px;
   position: relative;
-  margin: 0 15px 0 0;
+  margin: 0 15px 0 25px;
   justify-self: flex-end;
   transform: rotate(90deg);
 }
@@ -227,3 +311,52 @@ button.plus:disabled, button.minus:disabled{
     background-color: #e81309;
 } 
 /* End of modified battery code*/
+
+/* some cool button styles I found */
+.simStart {
+    background-color: #66A182;
+    color: #FFF;
+    transition: all 0.5s;
+    position: relative;
+    width: 250px;
+    height: 62px;
+    border-radius: 50px;    
+    font-size: 24px;
+}
+
+.simStart span{
+    justify-content: center;
+    font-size: 24px;
+}
+.simStart::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(255,255,255,0.1);
+    transition: all 0.3s;
+}
+.simStart:hover::before {
+    opacity: 0 ;
+    transform: scale(0.5,0.5);
+}
+.simStart::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    opacity: 0;
+    transition: all 0.3s;
+    border: 1px solid rgba(255,255,255,0.5);
+    transform: scale(1.2,1.2);
+}
+.simStart:hover::after {
+    opacity: 1;
+    transform: scale(1,1);
+}

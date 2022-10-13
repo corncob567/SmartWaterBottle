@@ -62,6 +62,7 @@ function startSimulation(){
   if (isSimulationRunning == false){
     isSimulationRunning = true;
     simStartButton.innerHTML = "Simulation Running";
+    simStartButton.style.backgroundColor = "grey";
     simStartButton.disabled = true;
     simDate = simStartDate;
     simStepCount = 0;
@@ -71,6 +72,10 @@ function startSimulation(){
     batteryLevel.style.height = '55%';
     plus.style.pointerEvents = "none";
     minus.style.pointerEvents = "none";
+    settingsGrid.style.zIndex = "-1"; // Hide the settings page
+    settingsIcon.style.visibility = "visible";
+    homeIcon.style.visibility = "hidden";
+    settingsButton.style.pointerEvents = "none";
     clearInterval(heatAndCoolInterval);
     heatAndCoolInterval = setInterval(heatAndCool, 80);
     document.getElementsByClassName("datetimeDisplay")[0].innerHTML = simStartDate.toLocaleDateString('en-US', simDateOptions);
@@ -167,23 +172,38 @@ let simulationData = {
   1300: [59, 600, true, false],
 };
 
-function simulationStep(){
-  if(simStepCount == 1440){
-    console.log("Simulation finished!");
+function stopSimulation(){
+  console.log("Simulation finished!");
     updateClock();
     checkmark.style.display = "none";
     drunkToday.innerHTML = 500;
     batteryLevel.style.height = '55%';
     isSimulationRunning = false;
     simStartButton.disabled = false;
+    simStartButton.style.backgroundColor = "#66A182";
     setTemp(45);
     clearInterval(heatAndCoolInterval);
     heatAndCoolInterval = setInterval(heatAndCool, 4000);
     plus.style.pointerEvents = "auto";
     minus.style.pointerEvents = "auto";
+    settingsButton.style.pointerEvents = "auto";
     bluetoothIcon.style.color = "black";
     simStartButton.innerHTML = "Start 24hr Simulation";
     clearInterval(simulation);
+}
+
+function checkGoalStatus(){
+  if (+drunkToday.innerHTML >= +dailyGoal.innerHTML){
+    checkmark.style.display = "inline";
+  }
+  else{
+    checkmark.style.display = "none";
+  }
+}
+
+function simulationStep(){
+  if(simStepCount == 1440){
+    stopSimulation();
   }else{
     //console.log("Simulation Step " + simStepCount);
     addMinutes(simDate, 1);
@@ -195,12 +215,7 @@ function simulationStep(){
       meter.value = +meter.value + simDataAtStep[1];
       if (simDataAtStep[1] < 0){ // Implying water was drunk from the bottle
         drunkToday.innerHTML = +drunkToday.innerHTML - simDataAtStep[1];
-        if (+drunkToday.innerHTML >= +dailyGoal.innerHTML){
-          checkmark.style.display = "inline";
-        }
-        else{
-          checkmark.style.display = "none";
-        }
+        checkGoalStatus();
       }
       if (simDataAtStep[3] == true){
         bluetoothIcon.style.color = "blue";
@@ -211,3 +226,34 @@ function simulationStep(){
     simStepCount++;
   }
 }
+
+// Settings page
+let settingsButton = document.querySelector(".settingsButton");
+let settingsIcon = document.querySelector(".fa-gear");
+let homeIcon = document.querySelector(".fa-home");
+let settingsGrid = document.querySelector(".settings-grid-container");
+settingsButton.addEventListener("click", toggleSettingsPage);
+
+function toggleSettingsPage(){
+  if(settingsGrid.style.zIndex < 1){
+    settingsGrid.style.zIndex = "1"; // Reveal the settings page
+    settingsIcon.style.visibility = "hidden";
+    homeIcon.style.visibility = "visible";
+  }
+  else{
+    settingsGrid.style.zIndex = "-1"; // Hide the settings page
+    settingsIcon.style.visibility = "visible";
+    homeIcon.style.visibility = "hidden";
+  }
+}
+
+let dailyGoalInput = document.getElementsByName("dailyGoalInput")[0];
+let volUnitsInput = document.getElementsByName("volUnitsInput")[0];
+let tempUnitsInput = document.getElementsByName("tempUnitsInput")[0];
+let militaryTimeInput = document.getElementsByName("militaryTimeInput")[0];
+let themeColorInput = document.getElementsByName("themeColorInput")[0];
+
+dailyGoalInput.addEventListener('change', (event) => {
+  dailyGoal.innerHTML = dailyGoalInput.value;
+  checkGoalStatus();
+});

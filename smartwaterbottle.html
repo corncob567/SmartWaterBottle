@@ -13,61 +13,100 @@
         <h3><a href="https://danielnhackney.weebly.com/cs-6067---ui.html">Project Documentation</a> | <a href="https://github.com/corncob567/SmartWaterBottle">Project GitHub Repo</a></h3>
         <img src=".\img\waterbottlestock.jfif" alt="Water Bottle Stock Image" width="120px" height="200px">
         <div>
-            <span>The interface will be a square, slightly bigger, version of the UI/screen you see on the water bottle in the image above. <br>
+            <span style="background-color:antiquewhite">The interface will be a square, slightly bigger, version of the UI/screen you see on the water bottle in the image above. <br>
             For scale, I would expect the screen to be at least as big as a standard Apple watch, but not too much larger.<br>
             The UI below is scaled up for better visibility.</span>
         </div>
     </div>
-    <div style="display:flex; justify-content: center; align-items: center;">
-        <button id="simStart" onclick="startSimulation()">Start 24hr Simulation</button>
+
+    <div style="margin-top: 10px;">
+        <button class="btn simStart" id="simStart" onclick="startSimulation()">Start 24hr Simulation</button>
     </div>
 
-    <div class="grid-container" id="mainUI">
-        <div class="section headerSection">
-            <div class="datetimeDisplay">DATE</div>
-            <div class="battery">
-                <div class="battery-level" style="height:55%;"></div>
-            </div>
-            <i style="font-size:24px" class="fa bluetoothIcon">&#xf293;</i>
-        </div>
-        <div class="section meterSection">
-            <meter class="waterQuantity" value="1000" min="1" max="1000">
-                <div pseudo="-webkit-meter-inner-element">
-                    <div pseudo="-webkit-meter-bar">
-                        <div pseudo="-webkit-meter-optimum-value" style="width: 46%;"></div>
-                    </div>
+    <div class="main-container">
+        <div class="grid-container mainView">
+            <div class="section headerSection">
+                <div class="datetimeDisplay">DATE</div>
+                <div class="battery">
+                    <div class="battery-level" style="height: 55%;"></div>
                 </div>
-            </meter>
+                <i class="fa bluetoothIcon" style="font-size: 24px;">&#xf293;</i>
+                <button class="settingsButton" style="font-size: 24px; width: 35px; height: 35px;">
+                        <i class="settingsIcon fa fa-gear"></i>
+                        <i class="settingsIcon fa fa-home" style="visibility: hidden; transform: translate(-1px, -27px);"></i>
+                </button>
+            </div>
+            <div class="section meterSection">
+                <meter class="waterQuantity" value="1000" min="1" max="1000">
+                    <div pseudo="-webkit-meter-inner-element">
+                        <div pseudo="-webkit-meter-bar">
+                            <div pseudo="-webkit-meter-optimum-value" style="width: 46%;"></div>
+                        </div>
+                    </div>
+                </meter>
+            </div>
+            <div class="section setterSection">
+                <p style="font-size: 40px; margin: 5px 0 5px 0;">Set Temperature</p>
+                <div class="input-container">
+                    <button class="minus">-</button>
+                    <input disabled id="waterTemp" value="45 &#8457" type="string"></input>
+                    <button class="plus">+</button>
+                </div>
+                <div class="currentTempContainer">
+                    <span>Currently: </span>
+                    <span class="currentTemp">54</span>
+                    <span class="tempUnit">&#8457</span>
+                    <span class="tempChangeDirection">&#8681;</span>
+                </div>
+            </div>
+            <div class="section goalSection">
+                <div class="dailyGoalContainer">
+                    <span>Daily Goal: </span>
+                    <span class="drunkToday">500</span>
+                    <span class="volUnit">ml / </span>
+                    <span class="goalVol">1000</span>
+                    <span class="volUnit">ml</span>
+                    <span class="checkmark">&#10003;</span>
+                </div>
+                <div class="dailyAvgContainer">
+                    <span>Daily Average: </span>
+                    <span class="dailyAvg">900</span>
+                    <span class="volUnit">ml</span>
+                </div>
+            </div>  
         </div>
-        <div class="section setterSection">
-            <label style="font-size: 40px;">Set Temperature</label>
-            <div class="input-container">
-                <button class="minus">-</button>
-                <input disabled id="waterTemp" value="45 &#8457" type="string"></input>
-                <button class="plus">+</button>
-            </div>
-            <div class="currentTempContainer">
-                <span>Currently: </span>
-                <span class="currentTemp">54</span>
-                <span class="tempUnit">&#8457</span>
-                <span class="tempChangeDirection">&#8681;</span>
+
+        <div class="settings-grid-container settingsView" >
+            <div class="section settingsSection">
+                <label style="font-size: 40px; margin: 10px 0 15px 0;">Settings</label>
+                <div class="settings-field">
+                    <label for="dailyGoalInput">Daily Goal:</label>
+                    <input type="number" onKeyDown="return false" step="50" id="dailyGoalInput" name="dailyGoalInput" value="1000" min="100" max="9999"><span style="margin-left:-50px; font-size: 24px;">ml</span>
+                </div>
+                <div class="settings-field">
+                    <label for="volUnitsInput">Volume Unit:</label>
+                    <select name="volUnitsInput" id="volUnitsInput">
+                        <option value="ml">Milliliters</option>
+                        <option value="oz">Fluid Ounces</option>
+                    </select>
+                </div>
+                <div class="settings-field">
+                    <label for="tempUnitsInput">Temperature Unit:</label>
+                    <select name="tempUnitsInput" id="tempUnitsInput">
+                        <option value="&#8457;">Fahrenheit</option>
+                        <option value="&#8451;">Celsius</option>
+                    </select>
+                </div>
+                <div class="settings-field">
+                    <label for="militaryTimeInput">Military Time:</label>
+                    <input type="checkbox" id="militaryTimeInput" name="militaryTimeInput" value="false">
+                </div>
+                <div class="settings-field">
+                    <label for="themeColorInput">Theme Color:</label>
+                    <input type="color" id="themeColorInput" name="themeColorInput" value="black">
+                </div>
             </div>
         </div>
-        <div class="section goalSection">
-            <div class="dailyGoalContainer">
-                <span>Daily Goal: </span>
-                <span class="drunkToday">500</span>
-                <span class="volUnit">ml / </span>
-                <span class="goalVol">1000</span>
-                <span class="volUnit">ml</span>
-                <span class="checkmark">&#10003;</span>
-            </div>
-            <div class="dailyAvgContainer">
-                <span>Daily Average: </span>
-                <span class="dailyAvg">900</span>
-                <span class="volUnit">ml</span>
-            </div>
-        </div>  
     </div>
 
     <script src="js/main.js"></script>
