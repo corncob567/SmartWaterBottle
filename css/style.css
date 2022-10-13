@@ -121,7 +121,6 @@ h3{
 .waterIcon {
     width: 40px;
     height: 40px;
-    --fa-primary-color: blue;
 }
 
 .settings-field{
@@ -163,7 +162,7 @@ h3{
 }
 
 .mainView, .settingsView{
-    background-color: rgb(76, 105, 158);
+    background-color: #4c699e;
 }
 
 .section {
